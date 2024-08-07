@@ -6,11 +6,88 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/1eecc548e5.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="bg-dark text-white">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <%= link_to root_path, class: 'text-white no-underline' do %>
+            <h4>Bookers</h4>
+          <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+
+
+            <% if user_signed_in? %>
+              <%= link_to user_path(current_user.id), class: 'text-white no-underline', style: 'margin: 10px;' do %>
+                <i class="fa-solid fa-house"></i>
+                <span> Home </span>
+              <% end %>
+
+              <%= link_to users_path, class: 'text-white no-underline', style: 'margin: 10px;' do %>
+                <i class="fa-solid fa-users"></i>
+                <span> Users </span>
+              <% end %>
+
+              <%= link_to books_path, class: 'text-white no-underline', style: 'margin: 10px;' do %>
+                <i class="fa-solid fa-book-open"></i>
+                <span> Books </span>
+              <% end %>
+
+              <%= link_to destroy_user_session_path, method: :delete , class: 'text-white no-underline' , style: 'margin: 10px;' do %>
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span> Log out </span>
+              <% end %>
+
+            <% else %>
+              <%= link_to root_path, class: 'text-white no-underline', style: 'margin: 10px;' do %>
+                <i class="fa-solid fa-house"></i>
+                <span> Home </span>
+              <% end %>
+
+              <%= link_to about_path, class: 'text-white no-underline', style: 'margin: 10px;' do %>
+                <i class="fa-solid fa-link"></i>
+                <span> About </span>
+              <% end %>
+
+              <%= link_to new_user_registration_path, class: 'text-white no-underline', style: 'margin: 10px;' do %>
+                <i class="fa-solid fa-user-plus"></i>
+                <span> Sign up </span>
+              <% end %>
+
+              <%= link_to new_user_session_path, class: 'text-white no-underline', style: 'margin: 10px;' do %>
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <span> Log in </span>
+              <% end %>
+            <% end %>
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="flex-grow-1">
+      <%= yield %>
+      </main>
+
+      <footer>
+        <div class="container mt-5">
+          <div class="row">
+            <div class="mx-auto">
+              <p>CopyRight Infratop.inc</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
   </body>
 </html>

@@ -1,0 +1,28 @@
+<%= flash[:notice] %>
+
+<div class="container">
+  <div class="row no-gutters">
+
+<%= render 'template/list', user: @user, book: @book  %>
+
+<div class="col-md-8 offset-md-1">
+<h2>Book detail</h2>
+<table class="table">
+  <tr>
+    <tb><%= link_to user_path(@book.user.id) do %>
+      <%= image_tag @book.user.get_profile_image(100,100) %>
+      <br><%= @book.user.name %>
+      <% end %></tb>
+    <tb><%= link_to book_path(@book.id) do %>
+      <%= @book.title %>
+      <% end %></tb>
+    <tb><%= @book.body %></tb>
+    <% if @book.user == current_user %>
+    <tb><%= link_to "Edit", edit_book_path(@book) , class: "btn btn-sm btn-success mt-4" %></tb>
+    <tb><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？" , class: "btn btn-sm btn-danger mt-4" %></tb>
+    <% end %>
+  </tr>
+</table>
+</div>
+</div>
+</div>

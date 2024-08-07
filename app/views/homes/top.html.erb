@@ -1,0 +1,18 @@
+<%= flash[:notice] %>
+
+<div class="container">
+  <div class="row">
+    <div class="my-box col-3"></div>
+
+    <div class="my-box col-auto">
+      <h1>welcome to <i class="fa-solid fa-book"></i class="font-weight-bolder">Bookers!!</h1>
+      <p>In <i class="fa-solid fa-book"></i><span class="font-weight-bolder">Bookers,</span></p>
+      <p>you can share and exchange your opinions , inpressions , and emotions</p>
+      <p>about various books!</p>
+
+      <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3" %>
+      <%= link_to 'Sign up', new_user_registration_path , class: "btn btn-success btn-sm btn-block" %>
+     
+    </div>
+    <div class="my-box col-3"></div>
+  </div>
